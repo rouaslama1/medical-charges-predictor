@@ -21,43 +21,10 @@ What should a health insurance policy cost for a given profile, and which factor
 - **Classify smokers.** SVM, decision tree, Random Forest and XGBoost, evaluated with accuracy, confusion matrix and ROC curve.
 - **Deploy.** A Streamlit app where you enter a profile and get an instant estimate, compared across models, with data exploration and live model performance pages.
 
-## Results
-
-Regression on a held-out test set (target: annual charges in $):
-
-| Model | R² | RMSE ($) |
-|---|---|---|
-| Decision tree (max depth 5) | **0.900** | **4,283** |
-| Random Forest | 0.894 | 4,405 |
-| XGBoost (GridSearchCV) | 0.894 | 4,423 |
-| XGBoost (RandomizedSearchCV) | 0.890 | 4,502 |
-| SVR (tuned) | 0.886 | 4,586 |
-| Polynomial regression (degree 2) | 0.866 | 4,966 |
-| Linear regression | 0.719 | 7,189 |
-
-Limiting the depth of the tree is what makes it the best model: left unconstrained it memorises the training set (train R² of 1.00, test R² of 0.79). For smoker classification, XGBoost reaches 97.8% test accuracy with an AUC of 0.996.
 
 ## Workflow
+Built following the CRISP-DM process, from business understanding to deployment.
 
-```mermaid
-flowchart LR
-    A[Insurance data<br/>1,338 insureds] --> B[Understanding<br/>EDA, correlations]
-    B --> C[Preparation<br/>cleaning, encoding, scaling]
-    C --> D[Unsupervised<br/>PCA, K-Means, DBSCAN]
-    C --> E[Modelling<br/>regression and classification]
-    E --> F[Evaluation<br/>R², RMSE, MAE, ROC]
-    F --> G[Deployment<br/>Streamlit app]
-```
-
-## Repository structure
-
-```
-medical-charges-predictor/
-├── README.md
-└── docs/
-    ├── demo.gif         # app walkthrough
-    └── notebook.html    # full analysis, exported from Jupyter
-```
 
 ## Stack
 
